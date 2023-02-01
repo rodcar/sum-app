@@ -14,6 +14,7 @@ export class SumFormComponent {
     a: ['', [Validators.required]],
     b: ['', [Validators.required]]
   });
+  result? = 0;
 
   constructor(private fb: FormBuilder, private sumService: SumService) { }
 
@@ -23,12 +24,13 @@ export class SumFormComponent {
 
   sum() {
     this.sumRequest = {
-      a: parseInt(this.sumForm.controls.a.value),
-      b: parseInt(this.sumForm.controls.a.value)
+      a: parseFloat(this.sumForm.controls.a.value),
+      b: parseFloat(this.sumForm.controls.b.value)
     } as SumRequest;
     console.log(this.sumRequest);
 
     let result = this.sumService.sum(this.sumRequest);
     console.log(result);
+    this.result = result;
   }
 }

@@ -1,0 +1,20 @@
+<form [formGroup]="sumForm" (ngSubmit)="onSubmit()" class="example-form">
+    <mat-form-field class="example-full-width">
+        <mat-label>Primer número</mat-label>
+        <input type="number" matInput formControlName="a" placeholder="Ingrese un número" />
+        <mat-error *ngIf="sumForm.controls.a.hasError('required')">
+            El primer número es <strong>obligatorio</strong>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <mat-label>Segundo número</mat-label>
+        <input type="number" matInput formControlName="b" placeholder="Ingrese un número" />
+        <mat-error *ngIf="sumForm.controls.b.hasError('required')">
+            El segundo número es <strong>obligatorio</strong>
+        </mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit" [disabled]="sumForm.invalid">
+        Calcular
+    </button>
+</form>
+<div>Resultado: {{result}}</div>
