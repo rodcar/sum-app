@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sum-app-frontend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sum-app-frontend
+  template:
+    metadata:
+      labels:
+        app: sum-app-frontend
+    spec:
+      containers:
+        - name: sum-app-frontend
+          image: rodcar/sum-app:v1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
