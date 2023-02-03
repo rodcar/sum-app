@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { SumRequest } from '../models/sum-request';
+import { SumResponse } from '../models/sum-response';
 import { SumService } from '../services/sum.service';
 
 @Component({
@@ -10,6 +11,7 @@ import { SumService } from '../services/sum.service';
 })
 export class SumFormComponent {
   sumRequest?: SumRequest;
+  sumResponse?: SumResponse;
   sumForm = this.fb.nonNullable.group({
     a: ['', [Validators.required]],
     b: ['', [Validators.required]]
@@ -29,8 +31,10 @@ export class SumFormComponent {
     } as SumRequest;
     console.log(this.sumRequest);
 
-    let result = this.sumService.sum(this.sumRequest);
-    console.log(result);
-    this.result = result;
+    this.sumService.sumAPI(this.sumRequest).subscribe(response => {
+      console.log(response);
+      this.sumResponse = response;
+      this.result = this.sumResponse.result;
+    });
   }
 }
