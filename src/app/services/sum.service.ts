@@ -9,7 +9,7 @@ import { SumResponse } from '../models/sum-response';
 })
 export class SumService {
 
-  private API_SUM_ENDPOINT = "http://sum-service-jenkins:9000/api/sum";
+  private API_SUM_ENDPOINT = "http://localhost:9001/api/sum";
 
   constructor(private http: HttpClient) { }
 
